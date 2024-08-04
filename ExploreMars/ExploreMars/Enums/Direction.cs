@@ -1,4 +1,4 @@
-﻿namespace ExploreMars;
+﻿namespace ExploreMars.Enums;
 
 public enum Direction
 {

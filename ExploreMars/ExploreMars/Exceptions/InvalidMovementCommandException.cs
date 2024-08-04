@@ -1,4 +1,6 @@
-﻿public class InvalidMovementCommandException : Exception
+﻿namespace ExploreMars.Exceptions;
+
+public class InvalidMovementCommandException : Exception
 {
     public InvalidMovementCommandException() { }
 

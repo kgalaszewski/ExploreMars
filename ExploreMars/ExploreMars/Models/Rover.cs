@@ -1,10 +1,22 @@
-﻿using ExploreMars;
+﻿using ExploreMars.Enums;
+using ExploreMars.Exceptions;
+using ExploreMars.Interfaces;
 
-public class Rover(int initialXPosition, int initialYPosition, Direction initialDirection)
+public class Rover : IRover
 {
-    private Direction _currentDirection = initialDirection;
+    private Direction _currentDirection;
+    private IPosition _currentRoverPosition;
 
-    private readonly Position _currentRoverPosition = new(initialXPosition, initialYPosition);
+    public Rover(IPosition initialPosition)
+    {
+        _currentRoverPosition = initialPosition;
+    }
+
+    public void Initialize(int initialXPosition, int initialYPosition, Direction initialDirection)
+    {
+        _currentRoverPosition.SetInitialPosition(initialXPosition, initialYPosition);
+        _currentDirection = initialDirection;
+    }
 
     public void Drive(string movementCommands)
     {
@@ -25,6 +37,12 @@ public class Rover(int initialXPosition, int initialYPosition, Direction initial
                     throw new InvalidMovementCommandException(movementCommand);
             }
         }
+    }
+
+    public string GetPositionInfo()
+    {
+        var (currentXPosition, currentYPosition) = _currentRoverPosition.GetCurrentPosition();
+        return $"Rover Position: {currentXPosition}, {currentYPosition}, {_currentDirection}";
     }
 
     private void TurnLeft()
@@ -68,11 +86,5 @@ public class Rover(int initialXPosition, int initialYPosition, Direction initial
                 _currentRoverPosition.UpdateXAxis(-1);
                 break;
         }
-    }
-
-    public void DisplayPosition()
-    {
-        var (currentXPosition, currentYPosition) = _currentRoverPosition.GetCurrentPosition();
-        Console.WriteLine($"Rover Position: {currentXPosition}, {currentYPosition}, {_currentDirection}");
     }
 }
