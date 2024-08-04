@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Enums.cs" />
-    <Compile Remove="RoverPosition.cs" />
-  </ItemGroup>
-
 </Project>

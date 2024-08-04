@@ -1,3 +1,5 @@
-﻿Rover rover = new Rover(0, 0, 'N');
-rover.Move("LMLMLMLMM");
-rover.PrintPosition();
+﻿using ExploreMars;
+
+Rover rover = new Rover(0, 0, Direction.North);
+rover.Drive("LMLMLMLMM");
+rover.DisplayPosition();
