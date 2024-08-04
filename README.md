@@ -1,5 +1,5 @@
 # ExploreMars
-
+My assumption was that I am not supposed to change the entry point, which is the way how we build the drive command, for example "MMLR". I made a refactor of the rest of the code, leaving the drive command pattern untouched.
 
 
 # Old readme from assignment
