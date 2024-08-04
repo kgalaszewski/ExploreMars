@@ -4,8 +4,8 @@ using ExploreMars.Interfaces;
 
 public class Rover : IRover
 {
-    private Direction _currentDirection;
-    private IPosition _currentRoverPosition;
+    private Direction _currentDirection; // By default, North
+    private IPosition _currentRoverPosition; // By default, 0,0
 
     public Rover(IPosition initialPosition)
     {
@@ -31,7 +31,7 @@ public class Rover : IRover
                     TurnRight();
                     break;
                 case 'M':
-                    MoveForward();
+                    DriveForward();
                     break;
                 default:
                     throw new InvalidMovementCommandException(movementCommand);
@@ -47,6 +47,8 @@ public class Rover : IRover
 
     private void TurnLeft()
     {
+        Console.WriteLine($"Current direction is {_currentDirection}. Turning left ...");
+
         _currentDirection = _currentDirection switch
         {
             Direction.North => Direction.West,
@@ -59,6 +61,8 @@ public class Rover : IRover
 
     private void TurnRight()
     {
+        Console.WriteLine($"Current direction is {_currentDirection}. Turning right ...");
+
         _currentDirection = _currentDirection switch
         {
             Direction.North => Direction.East,
@@ -69,8 +73,10 @@ public class Rover : IRover
         };
     }
 
-    private void MoveForward()
+    private void DriveForward()
     {
+        Console.WriteLine($"Current direction is {_currentDirection}. Driving forward ...");
+
         switch (_currentDirection)
         {
             case Direction.North:
